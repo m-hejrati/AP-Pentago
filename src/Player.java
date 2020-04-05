@@ -20,4 +20,8 @@ public class Player {
         this.name = name;
         this.colorCode = colorCode;
     }
+
+    public int getColorCode() {
+        return colorCode;
+    }
 }

@@ -27,6 +27,15 @@ public class Main {
 
         myMap.print();
 
+        // enter block until it be correct
+        while (!myMap.placeStone(p1, input.nextInt() - 1, (int) input.next().charAt(0) - 64 - 1)) ;
+
+        if (myMap.checkFinish(p2))
+            System.out.println("yes");
+        else
+            System.out.println("no");
+
+        myMap.print();
 
     }
 }
