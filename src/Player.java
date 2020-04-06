@@ -8,20 +8,20 @@
 public class Player {
 
     private String name;
-    // black: 1, white: 2;
+    // black: 2, white: 1;
     private int colorCode;
 
-    /**
-     * constructor for player
-     * @param name name of the player
-     * @param colorCode code of his color
-     */
     public Player(String name, int colorCode) {
         this.name = name;
         this.colorCode = colorCode;
+        Map hello = new Map();
     }
 
     public int getColorCode() {
         return colorCode;
+    }
+
+    public String getName() {
+        return name;
     }
 }

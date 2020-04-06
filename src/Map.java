@@ -14,19 +14,24 @@ public class Map {
      */
     public Map() {
         map = new int[6][6];
-//        map [0][0] = 2;
-//        map [1][1] = 2;
-//        map [2][2] = 2;
-//        map [3][3] = 2;
-//        map [4][4] = 2;
     }
 
-
     public boolean placeStone(Player player, int row, int column) {
+        // if he entered correctly to an empty cell, set his color to block.
+        if (isInMap(row, column))
+            if (map[row][column] == 0) {
+                map[row][column] = player.getColorCode();
+                return true;
+            }
+        System.out.println("Please enter in the correct form");
+        return false;
+    }
 
-        // if he entered correct, set his color to block.
-        if (isInMap(row, column)) {
-            map[row][column] = player.getColorCode();
+    public boolean spin (int quadrant, char spinDirection){
+        // if he entered correct, quadrant spin.
+        if ((quadrant > 0 && quadrant < 5) && (spinDirection == 'O' || spinDirection == 'C')) {
+            Block block = new Block();
+            block.completeRotate(map, quadrant, spinDirection);
             return true;
         } else {
             System.out.println("Please enter in the correct form");
@@ -36,7 +41,6 @@ public class Map {
 
 
     public boolean checkFinish(Player player) {
-
         for (int i = 0; i < 8; i++)
             for (int j = 0; j < 8; j++)
                 if (checkAround(i, j, player.getColorCode()))
@@ -85,23 +89,17 @@ public class Map {
     }
 
 
-    public boolean isInMap(int i, int j) {
-        if (((i >= 0) && (i <= 5)) && ((j >= 0) && (j <= 5)))
-            return true;
-        else
-            return false;
-    }
-
-
-    public int countColor (Player player) {
-        int sum = 0;
+    public boolean isFull (){
         for (int i = 0; i < 6; i++)
             for (int j = 0; j < 6; j++)
-                if (map[i][j] == player.getColorCode())
-                    sum++;
-        return sum;
+                if (map[i][j] == 0)
+                    return false;
+    return true;
     }
 
+    public boolean isInMap(int i, int j) {
+        return ((i >= 0) && (i <= 5)) && ((j >= 0) && (j <= 5));
+    }
 
     public void print() {
         // print A to H character
@@ -118,9 +116,9 @@ public class Map {
                 System.out.println("   -------------");
                 System.out.print(i + 1 + "  ");
             for (int j = 0; j < 6; j++) {
-                if (map[i][j] == 1)
+                if (map[i][j] == 2)
                     System.out.print('\u25cf' + " ");
-                else if (map[i][j] == 2)
+                else if (map[i][j] == 1)
                     System.out.print('\u25cc' + " ");
                 else
                     System.out.print("O ");
