@@ -11,16 +11,28 @@ public class Player {
     // black: 2, white: 1;
     private int colorCode;
 
+    /**
+     * constructor for player
+     * @param name name of the player
+     * @param colorCode code of his color
+     */
     public Player(String name, int colorCode) {
         this.name = name;
         this.colorCode = colorCode;
-        Map hello = new Map();
-    }
+   }
 
+    /**
+     * getter for color code
+     * @return color code
+     */
     public int getColorCode() {
         return colorCode;
     }
 
+    /**
+     * getter for player name
+     * @return player name
+     */
     public String getName() {
         return name;
     }
